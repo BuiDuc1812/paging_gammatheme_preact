@@ -1,0 +1,8 @@
+{
+  "editor.foldingStrategy": "indentation",
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "*.liquid": "liquid"
+  },
+  "liquid.format.enable": false
+}

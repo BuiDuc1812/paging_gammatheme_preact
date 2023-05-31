@@ -1,0 +1,21 @@
+{{- 'section-check_cli_newversion.css' | asset_url | stylesheet_tag -}}
+<section id="data_api" class="px-10 2xl:px-20">
+    
+</section>
+
+{%- capture src_url -%}
+  {{- 'section-check_cli_newversion.js' | asset_url -}}
+{%- endcapture -%}
+{%- render 'atom_script', src: src_url, priority: 'normal', type: 'defer' -%}
+
+{% schema %}
+  {
+    "name": "Api data",
+    "class": "api_data",
+    "presets": [
+      {
+        "name": "Api data"
+      }
+    ]
+  }
+{% endschema %}
