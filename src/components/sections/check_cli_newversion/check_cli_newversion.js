@@ -4,9 +4,11 @@ import { select } from '@/components/helpers/dom'
 import { useEffect, useState } from 'preact/hooks'
 import Paginate from '../../snippets/paging/paging'
 
+const apiUrl = 'https://api.punkapi.com/v2/beers'
+
 async function countData() {
   try {
-    const response = await fetch('https://api.punkapi.com/v2/beers')
+    const response = await fetch(apiUrl)
     const data = await response.json()
     return data.length
   } catch (error) {
@@ -16,7 +18,7 @@ async function countData() {
 
 async function getData(page, perPage) {
   try {
-    const response = await fetch(`https://api.punkapi.com/v2/beers?per_page=${perPage}&page=${page}`)
+    const response = await fetch(apiUrl + `?per_page=${perPage}&page=${page}`)
     const data = await response.json()
     const totalData = await countData()
     const itemsToShow = page === Math.ceil(totalData / perPage) ? totalData % perPage : perPage
