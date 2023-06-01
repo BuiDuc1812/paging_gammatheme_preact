@@ -3,6 +3,7 @@ import './check_cli_newversion.css'
 import { select } from '@/components/helpers/dom'
 import { useEffect, useState } from 'preact/hooks'
 import { Paginate } from '../../snippets/paging/paging'
+import { ShowData } from './group_items'
 
 const apiUrl = 'https://api.punkapi.com/v2/beers'
 const perPage = 3
@@ -60,7 +61,7 @@ const App = () => {
   const firstIndex = (page) => setCurrentPage((page = 1))
   return (
     <>
-      <MyComponent data={dataItems} />
+      <ShowData data={dataItems} />
       <Paginate
         totalData={totalData}
         perPage={perPage}
