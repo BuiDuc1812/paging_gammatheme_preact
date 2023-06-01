@@ -5,6 +5,8 @@ import { useEffect, useState } from 'preact/hooks'
 import { Paginate } from '../../snippets/paging/paging'
 import { ShowData } from './group_items'
 
+// axios, jsx, hook, render, es6, prop, state, component, eslint... ,call black, useContext
+
 const apiUrl = 'https://api.punkapi.com/v2/beers'
 const perPage = 3
 
