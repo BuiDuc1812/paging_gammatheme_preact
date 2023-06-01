@@ -1,6 +1,7 @@
-export default function Paginate({ totalData, perPage, currentPage, onChange, prev, next, last, first }) {
+export function Paginate({ totalData, perPage, currentPage, onChange, prev, next, last, first }) {
   const totalPage = Math.ceil(totalData / perPage)
-  const pageNumbers = Array.from({ length: totalPage }, (_, index) => index + 1)
+  const length = totalPage
+  const pageNumbers = Array.from({ length }, (_, index) => index + 1)
   let pagesToShow = []
   if (totalPage <= 5) {
     pagesToShow = pageNumbers
@@ -25,7 +26,11 @@ export default function Paginate({ totalData, perPage, currentPage, onChange, pr
         &#8249;
       </button>
       {pagesToShow.map((page) => (
-        <button key={page} onClick={() => onChange(page)} class={page === currentPage ? 'active border border-solid border-black' + ' px-3' : 'px-3'}>
+        <button
+          key={page}
+          onClick={() => onChange(page)}
+          class={`px-3 ${page === currentPage ? 'active border border-solid border-black' : ''} ${page === '...' ? 'pointer-events-none' : ''}`}
+        >
           {page}
         </button>
       ))}

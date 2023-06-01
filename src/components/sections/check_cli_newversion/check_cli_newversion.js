@@ -2,9 +2,10 @@ import { render } from 'preact'
 import './check_cli_newversion.css'
 import { select } from '@/components/helpers/dom'
 import { useEffect, useState } from 'preact/hooks'
-import Paginate from '../../snippets/paging/paging'
+import { Paginate } from '../../snippets/paging/paging'
 
 const apiUrl = 'https://api.punkapi.com/v2/beers'
+const perPage = 3
 
 async function countData() {
   try {
@@ -50,7 +51,6 @@ function MyComponent({ data }) {
 const App = () => {
   const [totalData, setTotalData] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
-  const perPage = 3
   const [dataItems, setDataItems] = useState([])
   useEffect(async () => setTotalData(await countData()))
   useEffect(async () => setDataItems(await getData(currentPage, perPage)), [currentPage])
