@@ -2,7 +2,7 @@ import check from './logic_paging'
 export function Paginate({ totalData, perPage, currentPage, onChange, prev, next, last, first }) {
   const totalPage = Math.ceil(totalData / perPage)
   return (
-    <div class="flex justify-center gap-3 mt-3">
+    <div class="mt-3 flex justify-center gap-3">
       <button onClick={() => first(currentPage)} class={`px-3 ${currentPage === 1 ? 'pointer-events-none' : 'pointer-events-auto'}`}>
         &laquo;
       </button>
