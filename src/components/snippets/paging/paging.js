@@ -3,10 +3,10 @@ export function Paginate({ totalData, perPage, currentPage, onChange, prev, next
   const totalPage = Math.ceil(totalData / perPage)
   return (
     <div class="mt-3 flex justify-center gap-3">
-      <button onClick={() => first(currentPage)} class={`px-3 ${currentPage === 1 ? 'pointer-events-none' : 'pointer-events-auto'}`}>
+      <button onClick={() => first()} class={`px-3 ${currentPage === 1 ? 'pointer-events-none' : 'pointer-events-auto'}`}>
         &laquo;
       </button>
-      <button onClick={() => prev(currentPage)} class={`px-3 ${currentPage === 1 ? 'pointer-events-none' : 'pointer-events-auto'}`}>
+      <button onClick={() => prev()} class={`px-3 ${currentPage === 1 ? 'pointer-events-none' : 'pointer-events-auto'}`}>
         &#8249;
       </button>
       {check(totalPage, currentPage).map((page) => (
@@ -18,7 +18,7 @@ export function Paginate({ totalData, perPage, currentPage, onChange, prev, next
           {page}
         </button>
       ))}
-      <button onClick={() => next(currentPage)} class={`px-3 ${currentPage === totalPage ? 'pointer-events-none' : 'pointer-events-auto'}`}>
+      <button onClick={() => next()} class={`px-3 ${currentPage === totalPage ? 'pointer-events-none' : 'pointer-events-auto'}`}>
         &#8250;
       </button>
       <button onClick={() => last(totalPage)} class={`px-3 ${currentPage === totalPage ? 'pointer-events-none' : 'pointer-events-auto'}`}>

@@ -29,7 +29,6 @@ async function getData(page, perPage, totalData) {
   }
 }
 
-console.log(countData())
 const App = () => {
   const [totalData, setTotalData] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
@@ -37,15 +36,9 @@ const App = () => {
   useEffect(async () => {
     setTotalData(await countData())
   }, [])
-
   useEffect(async () => {
     setDataItems(await getData(currentPage, perPage, totalData))
   }, [currentPage])
-
-  const changeCurrentPage = (page) => setCurrentPage(page)
-  const nextIndex = (page) => setCurrentPage(page + 1)
-  const prevIndex = (page) => setCurrentPage(page - 1)
-  const firstIndex = (page) => setCurrentPage((page = 1))
   return (
     <>
       <ShowData data={dataItems} />
@@ -53,11 +46,11 @@ const App = () => {
         totalData={totalData}
         perPage={perPage}
         currentPage={currentPage}
-        onChange={changeCurrentPage}
-        prev={prevIndex}
-        next={nextIndex}
-        last={changeCurrentPage}
-        first={firstIndex}
+        onChange={(page) => setCurrentPage(page)}
+        prev={() => setCurrentPage(currentPage - 1)}
+        next={() => setCurrentPage(currentPage + 1)}
+        last={(totalPage) => setCurrentPage(totalPage)}
+        first={() => setCurrentPage(1)}
       />
     </>
   )
