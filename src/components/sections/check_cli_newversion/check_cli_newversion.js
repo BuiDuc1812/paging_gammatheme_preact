@@ -18,11 +18,10 @@ async function countData() {
   }
 }
 
-async function getData(page, perPage) {
+async function getData(page, perPage, totalData) {
   try {
     const response = await fetch(apiUrl + `?per_page=${perPage}&page=${page}`)
     const data = await response.json()
-    const totalData = await countData()
     const itemsToShow = page === Math.ceil(totalData / perPage) ? totalData % perPage : perPage
     return data.slice(0, itemsToShow)
   } catch (error) {
@@ -30,12 +29,19 @@ async function getData(page, perPage) {
   }
 }
 
+console.log(countData())
 const App = () => {
   const [totalData, setTotalData] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [dataItems, setDataItems] = useState([])
-  useEffect(async () => setTotalData(await countData()))
-  useEffect(async () => setDataItems(await getData(currentPage, perPage)), [currentPage])
+  useEffect(async () => {
+    setTotalData(await countData())
+  }, [])
+
+  useEffect(async () => {
+    setDataItems(await getData(currentPage, perPage, totalData))
+  }, [currentPage])
+
   const changeCurrentPage = (page) => setCurrentPage(page)
   const nextIndex = (page) => setCurrentPage(page + 1)
   const prevIndex = (page) => setCurrentPage(page - 1)
